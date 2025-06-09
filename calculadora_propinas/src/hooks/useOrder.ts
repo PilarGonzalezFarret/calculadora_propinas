@@ -1,4 +1,3 @@
-import { OrderItem } from './../types/index';
 import { useState } from "react"
 import type { MenuItem, OrderItem } from "../types"
 
@@ -8,7 +7,9 @@ export default function useOrder() {
     const addItem = (item: MenuItem) => {
         const itemExist = order.find(OrderItem => OrderItem.id === item.id)
         if(itemExist) {
-            const updatedOrder = order.map(orderItem => orderItem.id === item.id ? {...orderItem, quantity: orderItem.quantity + 1} : orderItem
+            const updatedOrder = order.map(orderItem => orderItem.id === item.id ? 
+                {...orderItem, quantity: orderItem.quantity + 1} : 
+                orderItem
             )
         setOrder(updatedOrder)
             
@@ -16,14 +17,15 @@ export default function useOrder() {
             const newItem = {...item, quantity: 1}
         setOrder([...order, newItem])
         }
-
-        
-
     } 
 
-    console.log(order);
-    
+    const removeItem = (id: MenuItem["id"]) => {
+        setOrder(order.filter( item => item.id !== id ))
+        
+    } 
     return {
-        addItem
+        order,
+        addItem,
+        removeItem
     }
 }
