@@ -3,10 +3,11 @@ import { menuItems } from "./data/db";
 import useOrder from "./hooks/useOrder";
 import OrderContents from "./components/OrderContents";
 import OrderTotals from "./components/OrderTotals";
+import TipPercentageForm from "./components/TipPercentageForm";
 
 
 function App() {
-  const{ order, addItem, removeItem } = useOrder()
+  const{ order, addItem, removeItem, tip, setTip } = useOrder()
   return (
     <>
       <header className="bg-teal-400 py-5">
@@ -33,6 +34,10 @@ function App() {
             <OrderContents 
             order={order}
             removeItem= {removeItem}
+            />
+
+            <TipPercentageForm
+              setTip={setTip}
             />
 
             <OrderTotals
