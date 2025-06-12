@@ -7,7 +7,7 @@ import TipPercentageForm from "./components/TipPercentageForm";
 
 
 function App() {
-  const{ order, addItem, removeItem, tip, setTip } = useOrder()
+  const{ order, addItem, removeItem, tip, setTip, placeOrder } = useOrder()
   return (
     <>
       <header className="bg-teal-400 py-5">
@@ -38,10 +38,13 @@ function App() {
 
             <TipPercentageForm
               setTip={setTip}
+              tip={tip}
             />
 
             <OrderTotals
               order={order}
+              tip={tip}
+              placeOrder={placeOrder}
             />
         </div>
       </main>
