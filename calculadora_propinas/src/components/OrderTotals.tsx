@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import { OrderItem } from "../types"
+import type {OrderItem} from "../types"
 import { formatCurrency } from "../helpers"
 
 type OrderTotalsProps = {
@@ -8,7 +8,7 @@ type OrderTotalsProps = {
     placeOrder : () => void
 }
 
-export default function OrderTotals({order, tip placeOrder}: OrderTotalsProps) {
+export default function OrderTotals({order, tip, placeOrder}: OrderTotalsProps) {
 
     const subtotalAmount = useMemo(() => order.reduce( (total, item) => total + (item.quantity * item.price), 0 ), [order])
     const tipAmount = useMemo(() => subtotalAmount * tip, [tip, order])
@@ -30,7 +30,7 @@ export default function OrderTotals({order, tip placeOrder}: OrderTotalsProps) {
         </div>
 
         <button 
-            className="w-full bg-black p-3 uppercase text-white font-bold mt-10 disabled: opacity-30"
+            className="w-full bg-black p-3 uppercase text-white font-bold mt-10 disabled:opacity-30"
             disabled={totalAmount===0}
             onClick={placeOrder}
             >
